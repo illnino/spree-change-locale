@@ -1,5 +1,9 @@
 module SpreeChangeLocale
   class Engine < Rails::Engine
+    initializer "spree.change_locale.preferences", :after => ''"spree.environment" do |app|
+      # Spree::FlagPromotions::Config = Spree::FlagPromotionConfiguration.new
+      Spree::ChangeLocale::Config = Spree::ChangeLocaleConfiguration.new
+    end
     engine_name 'spree_change_locale'
 
     config.autoload_paths += %W(#{config.root}/lib)
